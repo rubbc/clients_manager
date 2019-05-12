@@ -1,0 +1,22 @@
+<h1>Clients</h1>
+
+
+<%# @clients.each do |id, client| %>
+
+  <%#= client[:name] %>
+
+<%# end %>
+
+
+<form action="/clients" method="get">
+  <input type="text" name="arrondissement" placeholder="Where ?">
+  <input type="submit">
+</form>
+
+
+<ul>
+  <% @clients.each do |id, client| %>
+
+    <li><%= link_to client[:name], client_path(id) %></li>
+  <% end %>
+</ul>
