@@ -1,5 +1,5 @@
-<h1><%= @client[:name] %></h1>
-
-<p><mark>Arrondissement: <%= @client[:arrondissement] %></mark></p>
-
-<%= link_to 'back', clients_path %>
+<h1><%= @client.name %></h1>
+<h3><%= @client.address %></h3>
+<mark><%= @client.arrondissement %></mark>
+<br>
+<%= link_to 'Back to the list', clients_path %>

@@ -1,22 +1,12 @@
 <h1>Clients</h1>
 
+<%= link_to 'Add', new_client_path %>
 
-<%# @clients.each do |id, client| %>
+<% @clients.each do |client| %>
 
-  <%#= client[:name] %>
+  <h2><%= link_to client.name, client_path(client) %></h2>
+  <%= link_to "delete", client_path(client), method: :delete, data: { confirm: "Are you sure ?"} %>
 
-<%# end %>
-
-
-<form action="/clients" method="get">
-  <input type="text" name="arrondissement" placeholder="Where ?">
-  <input type="submit">
-</form>
+<% end %>
 
 
-<ul>
-  <% @clients.each do |id, client| %>
-
-    <li><%= link_to client[:name], client_path(id) %></li>
-  <% end %>
-</ul>

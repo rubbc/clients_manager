@@ -1,28 +1,45 @@
 class ClientsController < ApplicationController
 
-
-   CLIENTS = {
-    1 => { name: "Dortel", address: "Shoreditch, London", arrondissement: "2" },
-    2 => { name: "Samba", address: "City, London", arrondissement: "4" }
-  }
+  before_action :set_client, only: [:show, :edit, :update, :destroy]
 
 
   def index
-    if params[:arrondissement].blank?
-      @clients = CLIENTS
-    else
-      @clients = CLIENTS.select do |id, client|
-        client[:arrondissement] == params[:arrondissement]
-      end
-    end
+    @clients = Client.all
   end
 
   def show
-    id = params[:id].to_i
-    @client = CLIENTS[id]
+  end
+
+  def new
+    @client = Client.new
+
   end
 
   def create
+    client = Client.create(client_params)
+    redirect_to client_path(client)
+  end
 
+  def edit
+  end
+
+  def update
+    @client.update(client_params)
+    redirect_to clients_path
+  end
+
+  def destroy
+    @client.destroy
+    redirect_to clients_path
+  end
+
+  def set_client
+    @client = Client.find(params[:id])
+  end
+
+  private
+
+  def client_params
+    params.require(:client).permit(:name, :address, :arrondissement)
   end
 end
